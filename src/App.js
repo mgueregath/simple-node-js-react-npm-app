@@ -9,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Pipeline jenkins con docker</h1>
+          <div>Web modificada</div>
         </header>
         <p className="App-intro">
           INFO 282
