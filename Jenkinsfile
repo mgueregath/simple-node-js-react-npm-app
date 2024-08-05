@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout, Test & Build') {
         agent {
-          docker {
+          dockerContainer {
             image 'node:10-alpine'
             args '-p 3001:3000'
           }
@@ -34,6 +34,7 @@ pipeline {
           }
         }
     }
+    '''
     stage('Deploy') {
       agent {
         label 'master'
@@ -49,5 +50,6 @@ pipeline {
         sh 'docker run -dit --name test-project -p 8001:80 -v /var/www/test-project/:/usr/local/apache2/htdocs/ httpd:2.4'
       }
     }
+    '''
   }
 }
