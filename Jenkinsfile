@@ -2,6 +2,7 @@ pipeline {
   agent none 
   stages {
     stage('Code Analysis') {
+        agent any
         steps {
             script {
                 withSonarQubeEnv('Sonar') {
