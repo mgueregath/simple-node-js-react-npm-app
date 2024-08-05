@@ -4,11 +4,11 @@ pipeline {
     stage('Code Analysis') {
         agent any
         environment {
-            scannerHome = tool 'Sonar';
+            scannerHome = tool 'SonarQube';
         }
         steps {
             script {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube Scanner') {
                     sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=test-project \
                         -Dsonar.projectName=test-project \
