@@ -2,9 +2,6 @@ pipeline {
   agent none 
   stages {
     stage('Code Analysis') {
-        environment {
-            scannerHome = tool 'Sonar'
-        }
         steps {
             script {
                 withSonarQubeEnv('Sonar') {
