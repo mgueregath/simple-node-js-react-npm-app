@@ -20,7 +20,7 @@ pipeline {
     }
     stage('Checkout, Test & Build') {
         agent {
-          dockerContainer {
+          docker {
             image 'node:10-alpine'
           }
         }
