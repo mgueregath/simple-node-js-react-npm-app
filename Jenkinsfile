@@ -1,6 +1,22 @@
 pipeline {
   agent none 
   stages {
+    stage('Code Analysis') {
+        environment {
+            scannerHome = tool 'Sonar'
+        }
+        steps {
+            script {
+                withSonarQubeEnv('Sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=test-project \
+                        -Dsonar.projectName=test-project \
+                        -Dsonar.projectVersion=test-project \
+                        -Dsonar.sources=./"
+                }
+            }
+        }
+    }
     stage('Checkout, Test & Build') {
         agent {
           dockerContainer {
