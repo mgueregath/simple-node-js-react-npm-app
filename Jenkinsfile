@@ -53,7 +53,7 @@ pipeline {
     }
     stage('Copy files') {
       agent {
-        label 'master'
+        label 'built-in'
       }
       options {
         skipDefaultCheckout()
