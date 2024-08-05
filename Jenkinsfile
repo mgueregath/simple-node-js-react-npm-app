@@ -33,8 +33,7 @@ pipeline {
           }
         }
     }
-    '''
-    stage('Deploy') {
+    stage('Copy files') {
       agent {
         label 'master'
       }
@@ -42,13 +41,10 @@ pipeline {
         skipDefaultCheckout()
       }
       steps {
-        sh 'rm -rf /var/www/test-project'
-        sh 'mkdir /var/www/test-project'
-        sh 'cp -Rp build/** /var/www/test-project'
-        sh 'docker stop test-project || true && docker rm test-project || true'
-        sh 'docker run -dit --name test-project -p 8001:80 -v /var/www/test-project/:/usr/local/apache2/htdocs/ httpd:2.4'
+        sh 'rm -rf /var/builds/test-project'
+        sh 'mkdir /var/builds/test-project'
+        sh 'cp -Rp build/** /var/builds/test-project'
       }
     }
-    '''
   }
 }
